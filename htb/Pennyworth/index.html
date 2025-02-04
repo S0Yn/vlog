@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+
+<html theme="dark" showBanner="true" hasBanner="false" > 
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet">
+<link href="https://cdn.staticfile.org/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
+<head>
+  <meta charset="utf-8">
+  
+  
+  
+
+  
+  <title>HTB - Pennyworth | Guertena - Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+
+  <meta name="description" content="請大家使用比較安全的密碼吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTB - Pennyworth">
+<meta property="og:url" content="https://blog.s0z.me/htb/Pennyworth/index.html">
+<meta property="og:site_name" content="Guertena - Blog">
+<meta property="og:description" content="請大家使用比較安全的密碼吧">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-02-04T00:07:15.812Z">
+<meta property="article:modified_time" content="2024-05-26T11:51:06.000Z">
+<meta property="article:author" content="Guertena">
+<meta property="article:tag" content="HTB">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Guertena - Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  
+   
+  <div id="main-grid" class="  ">
+    <div id="nav" class=""  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Guertena - Blog </div>
+    </a>
+  </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS Feed">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS Feed">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+        <image src=/img/avatar.png></image>
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">Guertena </div>
+      <div class="dot"></div>
+      <div class="subtitle">My compass is curiosity </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://discord.gg/Mq4QWHkV" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://app.hackthebox.com/users/1503196" title="Hack The Box"><i class="fa-regular fa-cube"></i></a>
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/S0Yn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
+</div>
+
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Categories</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/Write-Up/">
+                Write Up
+                <div class="category-count">8</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E6%95%99%E5%AD%B8/">
+                教學
+                <div class="category-count">2</div>
+            </a>
+        </div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">Tags</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Github-Page/" rel="tag">Github Page</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/HTB/" rel="tag">HTB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PicoCTF/" rel="tag">PicoCTF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RCE/" rel="tag">RCE</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-Injection/" rel="tag">SQL Injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Stacked-Queries/" rel="tag">Stacked Queries</a></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+       
+
+
+<article id="post-htb/Pennyworth" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 class="p-name article-title" itemprop="headline name">
+        HTB - Pennyworth
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-02-04T00:07:15.812Z" itemprop="datePublished">2025-02-04</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Write-Up/">Write Up</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+            1.3k words 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTB/" rel="tag">HTB</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="c86a09d300befedc2a72db67b66f11a6e657b4556a1d23fc3b66bdefe4cad8e0">5490ef2a6930c8ac4eae6f46bf07e4f186057c1666637990fe20439fc3c369f5dbfff76dc21190f24bf358f3ba85b802766d6a5942b2c0293de2b54000156e2b50777f83f68f1d246a434c12d0f649948f53244a6f150832d92f14ac587199fa4d48f091236fd51c68af252d099c3bbc5a58a6fe9bcef21744d11ab45e58cfa571a589adb23829911b0dd3ade9ca6af6d9148596e336d7bcd2edc3a5998780968b255214fa8cca77162e6875d0c452965e140832019b203d5290473d64ce3fad0605dbfd6a6bf48e8610bf5021e50ed66248dd4b34b04798b9c6bfc5d34875d7f9e2f46ec1358b9921121f1e287210e42a0d2e470ec85448bf0ca671c0c4950a10de38663d8130db0500fac24e3f794772497208fde8efe05befdf0b9d4e3ec98a081c764d8b403ec856b97691a64506331c8db14264518352db3105a1b13f8a7a01204e8bd12724c134b69dd4e0c068619f280b0a114540a13d8e1c3a49d5745c6429189375c221a20465b76a59b2d3e6907a660156c671505457d5ad677fdb0ca90417900a29c147ff06408822e03722ef5e1a755ea1777052b3a0526447fed10e6adb387b2bebf3dd5173c570a9588c55059b0b035a0f04537a1c773541b7f29b40350282aa73d055b95730a50099af94f0b1875a2f57ff783bae776cfd88b3936e14cf138b6411995fedfad4bec788756fa4ee510138001e663f5e95a2fd89e3e822aa6209ddfd8a4c2cfb381455d46ac583e154f4f7c6c8ab111d5351b0ad71d36a2b8898356fc69a109fae8ba540abe707c8c633fa2efed587c6b1a5dd2981881d668e48bb8f766bbfb6808f3538b4ac455012f1c6d331360f51d079ad667ce6d1c95e7c15f3e2ad27fee8cfc83d904603f3960e9219c8b445a7f50860b0c97202962ef8328159a53c0e3b6992066a5ecabbc617ff9739a8a686f8e9853f1183e8be1e09132e5089a699c3021c8d5badfa59eb09e664e870b99133edb3e78e6159f1956c4a6f92a2edce6860bab0b05470994abb57ac6bf134d14817b6ab79e30f0f0a2fa6a571f11d3062b8d0b58a79a9b0073587a3cce2f7ea96da737cf780ca069b47954e8c2abc5c8d7e5c9b71e548b02466dc813f00572009125484e7470c6c8f37887acf8f01e584aadc1c0492750f6f2cbf9df26c1b2da7a94aa88c632fa990e1d7531105dff3ad20f5ea38ceb686e47e1eec2ed3d0efa28c915764cf8b57722c3d769b511f2f4fb74a869c5735215616160a7d0a4a16c4bcae391473a9662e169c2b178759acbc2888ccae31c9dc046063391d05b81a18c2c127bef1e394eecc29d2c381507516933b54999f5f937968ca2b9279bd058eee94127713435d34649034dc7d949ea3a93153eacdbdf7775b677a3832ad84ada5ef1d02c20a84bdac0b2e8771550a148c17a71387706611f8fb6831099f3724f7618501a4ef57f3ffafda96352b64c31f3ad514649f168a4e32ee54f2fd440acd380755d76db46435719ae6e83e7b9928769768cf139d5edfda226d767567c271507688c42940c8f67fbb51d1d175e8b84473f479e4cbd38fa2111b5b6a4717cdafcead5124b3e5f2ecaa2d079957323d61b96d5278e6bbfcba88f96149469af306ae527c5cde596b69c6fd7a47f72d3babf8d7ae4f60ecd0840a4a88b980e35d279caf45f239285f57e6f1df577d6088af004662b378ac67773b2f50823b97cb57f20fb75933fa4fd1fb0b97bc3f4569508668f01b2c552f8a3d166fde3fe1d1b7f48acc4cf64da83d2109414a19c063d44b3cac91b7c1830d5f63ec10012d82c0053b9b7f3960a8cf0a8b8ac26272c2402e1b258e6f6d279216f86f8bf326180a3b144833fd219541bc4f4f46a187e5cb625402109d272ab0567e6006f855a201f41a198af0b17789b40bcf6ce076f32ca2f81dfe30bc582042c53b37dff04010fbaac847f5b3ec48355ed15df9390884ac55edcd3b95a67f02f7092aebc53052a58ea703f23c820943fa969c22f5b3018875ff9cb4246056bb42034c0c71c839190e70f7ace3180e680297e4bd37aa252ae6028fd136613a8e238ad22a8dd00754919876ffc3a3d476cba2934935504e393b3f61b55b4c0ecc99758a940b3f7c350f01b066874e5897190210650b817c700bed4980d5b3c9bb1b4181b56c1acf427b0b62cab1c169d71386a8e925f228c807ec19a7c2da168f66d0ee1391d79efc2ff828d99cd7bbbbeabd37bcc97dcb460353beee152793376a9938bf3bf8020b43938fb6b601d1cd4fca221ec8089434f28325d327b186125ce48c488099e9674bae8fd2f272e62b0c8d5bb67cfb02a2a3c2098df0aac1db1d0aa73db28f2fd253d9e4c92ee12683b3bdbf109182e3104f468cf193c1c0a7ca208cc5a3cd687f4fa913f11922a826298bab4aabdbf62ef6cf3cb72e05f6386f94bf4a06e2e178fefaa5c1265f83cbeb69f6b72b2afe68a0e8607f78457da20aa4d09a0f554784f9d93e69359dfa7e356edb7857b46c6ee12b6314c9d252654c5870a28135f621d6232434e9cec187e08671af6bd6b35f00545c9f0b583d9b061bb5662b05ecb724cf3f40e0c182e92e7c1ac70b119cdf90146e398a0a6e3ccfb448ccb2d7c0003e25327f543c73b33492966ab93d4aad6b6952da235a8ec9e225e51deaf089498bc0ad6d280a13442e4bf00efdf4c47278dc7aacdca3b530221b9fe5e7aa053df0fe53a4bc11bb62e4b610760e2cbf81e31369ab778dbb296e7e698a0854562d7c9a0cd27ff1adbaca56b41ade6f1fb321d9c9f1fc8b5e0e1bfaf62b8c95abf20aacb794a7e84ff97d59109e3bb53cf660f1c2c45ed3772310a186edaee615fd532a9409088ad60d74d634303d952bdbfa4c4c9b4d493905a85eca91dcd9a02f5ade7d0a5d6218294b2892ba31e510c79a12745c29fd9f1ca1e5184a53fe7850410a5ca77bbbfa493012fe48dd9f8b176df9501139ec4767989e62579892e6b98952ad21f2af0c76fccea812a3c4fea5250540dc1bd44f93981a19cc0a38c82d40f42498895d94466f240a8fa7c8a65f9232ea0cdbb1152e9172748ade99947ac6bafd7beefed6dbb5d3c779fc680fec33ec45d315294fbc9ba29359df4cc6350661396f22a40ec33c1ddc8877b7d6c71e666cdabcfa9ec61b504231655a7476d1c66dd9e18c9864ec111402f4c1e6e2cc869d69837633f569a89ea959053b262dd4b07a2c888cc9ccce55a36c20ebe7b194c7425f139a2897395d7b649c0f4592f6ceb6a71f60e715be4b705ffa338a21520dd964ce58c4b0ea9e2c680c2be631c157f98cb31d12a4dab2b201fe841af4be94b2b7797fada59a601b205251182e024f5a9046892d871b10f58eb50ff6dd1eb29ba8d8d4a79e77f410775924b754061931282e7838f881e4d23cf660a5a7e75c1469ee76cda425391bf1dc7b41535f73abacb0757ced2ff5adecead362f2b810400c2df167709782788e4cd7fb2fbcfc99f377cea15d0e230272eb6d398d616b35688756857e436146a8c153ff9d04bb824708a58f14dde5507af5b63f05bdd5767c882cdb472fe64432d4c36db14ae1eeb08d084eb4592d3d12135c090d0d78ee9f169122e27bcde49b876a786240316f0360af2d4571af97d63b08d4cf7ce09bf6d7bf0ce7a29bc307a09be7bacd4b299266220777df4e091bb184e151ed0587df4f00d3db97ef4a3ab7228da3cbf2e6a23ceb8101e3d08eefb63634f44fd5929fdbbc94d9324656f2c900d7b70cd50189086871daa981b33023875e17443b3be03ccf82d0224d2033bbdf73c47327ad4e6d4cdffd2d261ac4a7c34c8f77d90cdaa65066f79b3679a43989a98430e09f60bd776034ee9f0995cd00cd580f8bd6a50fb48ecf560930f0eb59c3305f34cb0e883c51101ea92714a5d5b5b3d2df8ddbb40296cdd9ec0ba284631a67dfd8e6ea42cb545f536b06b2b71fb62e3d4c9b2a2fae205b607bce0638838c7326edf5b02f4637450789ebe91c8276c58fd0efa6d3571427e36f05cc082c8fcdc2c1904d2fcbea9f45fa93c3c7bdc3b7367401c6502632465b5244d1d869fd78a8995be2d79a2bab1a9d8ca02b6d027d0556e8960c039522a78bf088423092baa24846078c40282cb3d378ca46790d8bcc9213a1207ca31a186a4c0c013919257419361ca52871102f44ea7100d846cc8e4a10c953c821baac3f0383573d043743b65bd6a6b057bc2c8324b20b751abfb6f773b7cc901609768620b27d111c8828d8d609f215dd96bdfb9dd4cc124535c1666026dfaa36d8c9e81045df4cafe54875228202e4a861cdb45f817a210bc48c720cbdd3651faef226bb0ce3e784a388f3e352aa1e0677c3be870db670540b8798a50c9c7f2451442cb246ceee06d4f82b67fa881097e57bed376174750c1a82a9415064ad0e79f09db72b3bf279c718e57dc72d7c0c72078dfc002f3c76f9e249869d4af0d9cc5faca9aa40b087308575516a666428f66c2335cdb5c4f83a532963656efeca7b46bbb1b884785e07b842b63200fa7f54b744a71f839819b9047e208eec53b4d5e84db746a4e7c6d657a26f39d2ea212dfbca62ef39405122f3158e45592c8b2a7a4da8c7da084f245674c80b938d9d4c4572f09bc15328ac0b77345e2af13acd4387557921245bc45d3321ce7c4be3cd442096c304e2385448f19253a30d981b6830ac2ef5a32cf94a36adc13ba00eadd20a1b0c60f48933d11d88a6178abc4d599b41cdf217384497364bd4ae2bf01e68d4eea884a24fb773bf6fd9b29455b03854557918618ce5c7087fa18f8d698abbe8a8b66dcdcb3819e0d4f6bbeaeb0d3579d4a0e4b1382cf1865704dfdaf885ca8a1e78a94a02276d857d3bcd2f8201df11e306025503ffe728358ced262287ad23ac9dac26cafb6968060c155883c8aa457bca0962362ddb7cd61ae730f0d130a1af4b1f97e1f802f759fea71a5fbf8c5ac4434fdcb7a446a3da68fb9e27062a338e60667986a6e533c31aa4e91b229a29b16842e10d5b4f32be5aae71c0e948591ccc0d9fda5c3e7528db364b574afbe69ca5bc98bfc9e3767e59ba5eb22339cee3b97978f6d4689cd5ad3927516ad72fdf739c7a680cf523e8c7f81a72e973c78572c704f396220efecea3f9e41c473bf920fb9ed98d09a7bb30a60564148e4ad613ba18abdccbd550c6971fd89a2efb731ebd9660dd190c456a7fcb9d1a49921541573a535d23fe732224f85f431e33197f56ea876b92bd6e171280725738fb2a6639fb7c81a7ec3bb1d3885d59ffd4a9822dbe92366d4e46ffbe7541f9a2049c209cd3f5f5c19bda71349446f695c2e863dd703888ff4ef27e88bb462b2faa6ce63da6b01dfa94834c3772d5b99682c418bfa43f4b6d634e2609b6a83843b2235826ff6b6579cff1cb32d7a53d0a9fc7069c8207d4da744dd5428647c5099af6d65b702307379b6672ee8303cb74f96214383d26059f5217988770a721cfd77ad4e182c165998e01c115c23c0ddb75a5460bdf6a068283c30cb8b0138158ce58cea08942338d2fb7054c42bec13d571c8b9435f4282e19173be4dbb44c9bcd46ac3ac74fb7a3ceeda0300861624093471d530b8eca5996926e1c8eebe5015aad484e2f48413f27bc00ee50a7db75aae39d46e43ee61d6e623fdef51062249c06c4b18fd2c193a7f4a2143d64f7044bd5e9659ef045ef321887ade8d897820a6aac809a5aeb01fe01e5ade68a1d3cd09a5cf58a617ee6f0e763063dd54833593ef6240c81d52c4887f7bba2cc1a81510d6aea3460aea36f8ed0ca885f601fd8ea7d865d5053c0c625664218f712a8300e8372d8f1546e55fc77b7cb3b075c8e1e6eb4e9c0beefac7f588508ecf017a7268a50aa05059b6a1eb7c1275ed291d85bdaeb1921bc7c0329429b222957d6fbd29ff2963463e334f6b461bd5d0cbf6f6f71be363e5184bc9d769a06447137946d8b2647257fa26228ecab7d37c1041050d40ee8f1fddba346caca30df5fab78286d9acb</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">就跟你講吧 ! 密碼是 startpoint</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        
+      </div>
+
+         
+    </div>
+    
+     
+  </div>
+  
+    
+<nav id="article-nav">
+  <a class="article-nav-btn left "
+    
+      href="/htb/Mailing/"
+      title="HTB - Mailing"
+     >
+    <i class="fa-solid fa-angle-left"></i>
+    <p class="title-text">
+      
+        HTB - Mailing
+        
+    </p>
+  </a>
+  <a class="article-nav-btn right "
+    
+      href="/htb/Usage/"
+      title="HTB - Usage"
+     >
+
+    <p class="title-text">
+      
+        HTB - Usage
+        
+    </p>
+    <i class="fa-solid fa-angle-right"></i>
+  </a>
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+    </div>
+    <div id="footer-wrapper">
+      <footer id="footer">
+  
+  <div id="footer-info" class="inner">
+    
+    &copy; 2025 Guertena<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
+  </div>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
+  </div>
+  <script src="/js/light-dark-switch.js"></script>
+</body>
+</html>
