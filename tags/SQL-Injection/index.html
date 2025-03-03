@@ -144,7 +144,7 @@
 
   <div class="widget-wrap">
     <div class="widget">
-      <h3 class="widget-title">分類</h3>
+      <h3 class="widget-title">Categories</h3>
       <div class="category-box">
             <a class="category-link" href="/categories/Write-Up/">
                 Write Up
@@ -164,7 +164,7 @@
       
   <div class="widget-wrap">
     <div class="widget">
-      <h3 class="widget-title">標籤</h3>
+      <h3 class="widget-title">Tags</h3>
       <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Github-Page/" rel="tag">Github Page</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/HTB/" rel="tag">HTB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PicoCTF/" rel="tag">PicoCTF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RCE/" rel="tag">RCE</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-Injection/" rel="tag">SQL Injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Stacked-Queries/" rel="tag">Stacked Queries</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
     </div>
   </div>
@@ -181,7 +181,7 @@
     <div class="archive-top">
       <div class="main-title-bar">
         <div class="main-title-dot"></div>
-        <h1 class="article-title">彙整</h1>
+        <h1 class="article-title">Archives</h1>
       </div>    
     </div>
     
@@ -194,7 +194,7 @@
             <div class="dot-wrapper">
                 <div class="dot"></div>
             </div>
-            <div class="article-count">1 篇文章</div>
+            <div class="article-count">1 article</div>
         </div>
       
       <a class="archive-article-link" href="/tutorial/SQLite%20RCE%20%E8%88%87%20Stacked%20Queries%20%E6%94%BB%E6%93%8A%E7%AD%86%E8%A8%98/" title="SQLite RCE 與 Stacked Queries 攻擊筆記">
@@ -222,8 +222,50 @@
   <div id="footer-info" class="inner">
     
     &copy; 2025 Guertena<br>
+    
+    <div id="server-status" style="margin-top: 10px;">正在檢測伺服器狀態...</div>
   </div>
 </footer>
+
+<script>
+  (function() {
+    
+    const serverAddress = "mc.s0z.me";
+    const apiUrl = `https://api.mcstatus.io/v2/status/java/${serverAddress}`;
+
+    function checkServerStatus() {
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("網路錯誤，狀態碼：" + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const statusDiv = document.getElementById("server-status");
+          
+          if (data.online === true) {
+            statusDiv.textContent = "Minecraft 狀態：上線";
+            statusDiv.style.color = "#4CAF50";
+          } else {
+            statusDiv.textContent = "Minecraft 狀態：離線";
+            statusDiv.style.color = "#F44336";
+          }
+        })
+        .catch(error => {
+          const statusDiv = document.getElementById("server-status");
+          statusDiv.textContent = "伺服器狀態：離線";
+          statusDiv.style.color = "#F44336";
+          console.error("檢查伺服器狀態時發生錯誤：", error);
+        });
+    }
+
+    
+    checkServerStatus();
+    
+    setInterval(checkServerStatus, 30000);
+  })();
+</script>
 
     </div>
     <div class="back-to-top-wrapper">

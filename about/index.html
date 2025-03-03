@@ -148,7 +148,7 @@
 
   <div class="widget-wrap">
     <div class="widget">
-      <h3 class="widget-title">分類</h3>
+      <h3 class="widget-title">Categories</h3>
       <div class="category-box">
             <a class="category-link" href="/categories/Write-Up/">
                 Write Up
@@ -168,7 +168,7 @@
       
   <div class="widget-wrap">
     <div class="widget">
-      <h3 class="widget-title">標籤</h3>
+      <h3 class="widget-title">Tags</h3>
       <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Github-Page/" rel="tag">Github Page</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/HTB/" rel="tag">HTB</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PicoCTF/" rel="tag">PicoCTF</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/RCE/" rel="tag">RCE</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQL-Injection/" rel="tag">SQL Injection</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Stacked-Queries/" rel="tag">Stacked Queries</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
     </div>
   </div>
@@ -206,13 +206,13 @@
           <div class="need-seperator meta-info">
             <div class="meta-cate-flex">
   
-    未分類 
+    Uncategorized 
    
 </div>
   
           </div>
           <div class="wordcount need-seperator meta-info">
-            84 詞 
+            84 words 
           </div>
         </div>
         
@@ -255,8 +255,50 @@
   <div id="footer-info" class="inner">
     
     &copy; 2025 Guertena<br>
+    
+    <div id="server-status" style="margin-top: 10px;">正在檢測伺服器狀態...</div>
   </div>
 </footer>
+
+<script>
+  (function() {
+    
+    const serverAddress = "mc.s0z.me";
+    const apiUrl = `https://api.mcstatus.io/v2/status/java/${serverAddress}`;
+
+    function checkServerStatus() {
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("網路錯誤，狀態碼：" + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const statusDiv = document.getElementById("server-status");
+          
+          if (data.online === true) {
+            statusDiv.textContent = "Minecraft 狀態：上線";
+            statusDiv.style.color = "#4CAF50";
+          } else {
+            statusDiv.textContent = "Minecraft 狀態：離線";
+            statusDiv.style.color = "#F44336";
+          }
+        })
+        .catch(error => {
+          const statusDiv = document.getElementById("server-status");
+          statusDiv.textContent = "伺服器狀態：離線";
+          statusDiv.style.color = "#F44336";
+          console.error("檢查伺服器狀態時發生錯誤：", error);
+        });
+    }
+
+    
+    checkServerStatus();
+    
+    setInterval(checkServerStatus, 30000);
+  })();
+</script>
 
     </div>
     <div class="back-to-top-wrapper">
